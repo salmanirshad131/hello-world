@@ -10,7 +10,7 @@
                     let lon = position.coords.longitude;
 
                     // Send to backend
-                    fetch("https://your-server.com/send-location", {
+                    fetch("http://localhost:3000/send-location", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ latitude: lat, longitude: lon })

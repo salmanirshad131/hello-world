@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Emergency Location</title>
+    <script>
+        function sendLocation() {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    let lat = position.coords.latitude;
+                    let lon = position.coords.longitude;
+
+                    // Send to backend
+                    fetch("https://your-server.com/send-location", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ latitude: lat, longitude: lon })
+                    });
+                }, function(error) {
+                    alert("❌ Location error: " + error.message);
+                });
+            } else {
+                alert("❌ Geolocation not supported.");
+            }
+        }
+    </script>
+</head>
+<body onload="sendLocation()">
+    <h1>Sending Emergency Location...</h1>
+</body>
+</html>
